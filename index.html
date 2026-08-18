@@ -1,10 +1,128 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-  <title>Hydrant AI Test</title>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  <title>Hydrant AI Assistant</title>
+
+  <!-- ArcGIS Maps SDK for JavaScript -->
+  <script type="module" src="https://js.arcgis.com/5.1/"></script>
+
+  <!-- ArcGIS Online authentication -->
+  <script type="module">
+
+    const [identityManager, OAuthInfo] = await $arcgis.import([
+      "@arcgis/core/identity/IdentityManager.js",
+      "@arcgis/core/identity/OAuthInfo.js"
+    ]);
+
+    const oAuthInfo = new OAuthInfo({
+      appId: "VEZkHytddFqtaX1r"
+    });
+
+    identityManager.registerOAuthInfos([oAuthInfo]);
+
+  </script>
+
+  <style>
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    calcite-shell {
+      height: 100%;
+      width: 100%;
+    }
+
+    arcgis-map {
+      height: 100%;
+    }
+
+    arcgis-assistant {
+      height: 100%;
+    }
+
+  </style>
+
 </head>
+
 <body>
-  <h1>Hydrant AI Test</h1>
-  <p>GitHub Pages is working.</p>
+
+  <calcite-shell>
+
+    <!-- YOUR HYDRANT WEB MAP -->
+    <arcgis-map
+      id="hydrant-map"
+      item-id="4ef38afc7f5548069b67180da489d2c9"
+      popup-component-enabled
+    >
+
+      <arcgis-zoom slot="top-left"></arcgis-zoom>
+
+      <arcgis-expand slot="top-left">
+        <arcgis-legend></arcgis-legend>
+      </arcgis-expand>
+
+    </arcgis-map>
+
+
+    <!-- AI ASSISTANT PANEL -->
+    <calcite-shell-panel
+      slot="panel-end"
+      width="l"
+    >
+
+      <calcite-panel>
+
+        <arcgis-assistant
+          log-enabled
+          copy-enabled
+          reference-element="#hydrant-map"
+          heading="Hydrant AI Assistant"
+          description="Explore the hydrant layer using natural language."
+          entry-message="Hello! Ask me questions about the hydrants in this map."
+        >
+
+          <arcgis-assistant-navigation-agent>
+          </arcgis-assistant-navigation-agent>
+
+          <arcgis-assistant-data-exploration-agent>
+          </arcgis-assistant-data-exploration-agent>
+
+          <arcgis-assistant-help-agent>
+          </arcgis-assistant-help-agent>
+
+        </arcgis-assistant>
+
+      </calcite-panel>
+
+    </calcite-shell-panel>
+
+  </calcite-shell>
+
+
+  <script type="module">
+
+    const assistant =
+      document.querySelector("arcgis-assistant");
+
+    assistant.suggestedPrompts = [
+      "How many hydrants are in the map?",
+      "What fields are available for the hydrants?",
+      "Zoom to all hydrants."
+    ];
+
+  </script>
+
 </body>
+
 </html>
