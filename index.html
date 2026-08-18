@@ -8,7 +8,7 @@
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
 
-  <title>Hydrant AI Assistant</title>
+  <title>Stillwater Water Layers AI Assistant</title>
 
   <!-- ArcGIS Maps SDK for JavaScript -->
   <script type="module" src="https://js.arcgis.com/5.1/"></script>
@@ -88,8 +88,8 @@
           copy-enabled
           reference-element="#hydrant-map"
           heading="Hydrant AI Assistant"
-          description="Explore the hydrant layer using natural language."
-          entry-message="Hello! Ask me questions about the hydrants in this map."
+          description="Explore the Stillwater Water layers using natural language."
+          entry-message="Hello! Ask me questions about the layers in this map."
         >
 
           <arcgis-assistant-navigation-agent>
@@ -117,6 +117,7 @@
 
     assistant.suggestedPrompts = [
       "How many hydrants are in the map?",
+      "How many water meters are in the map?",
       "What fields are available for the hydrants?",
       "Zoom to all hydrants."
     ];
